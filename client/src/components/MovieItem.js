@@ -2,7 +2,7 @@ import React,{useState} from "react";
 const MovieItem=(props)=>{
     const[hover,sethover]=useState(false);
     return(
-        <div className="card bg-light  mb-5 rounded  movie" data-aos="fade-bottom" style={{"width": "18rem"}}>
+        <div className="card bg-light  mb-5 rounded  movie " data-aos="fade-bottom" style={{"width": "18rem"}}>
               <img src={"https://image.tmdb.org/t/p/w185/"+props.poster_path} class="card-img" alt="..."/> 
               <div class="card-img-overlay text-center mx-auto justify-content-center"  onMouseEnter={() => sethover(true)}
         onMouseLeave={() => sethover(false)}>
