@@ -1,6 +1,7 @@
 import React,{useEffect,useState} from "react";
 import MovieItem from "./MovieItem";
 import MoviesSection from "./MoviesSection";
+import Navbar from "./Navbar";
 import { useSelector,useDispatch  } from "react-redux";
 
 import {searchMovies} from '../actions/movie'
@@ -38,15 +39,25 @@ const MovieList=(props)=>{
    
   
     console.log(movies);
-    
+    const navLinks=[
+        {
+            url:"",
+            name:"home"
+        },{
+            url:"#Popular",
+            name:"Popular Movies"
+        },
+        {
+            url:"#Discover",
+            name:"Discover Movies"
+        }
+    ]
     return(
         <React.Fragment>
+            <Navbar title="Movies" links={navLinks} handleSearch={handleSearch} searchText={"Search Movies"}/>
             <div className="row height d-flex justify-content-center align-items-center">
                 <div className="col-md-8">
-                    <div className="search"> 
-                        <i className="fa fa-search"></i> 
-                        <input type="text" className="form-control" onKeyDown={handleSearch} placeholder="Search Movies"/>
-                    </div>
+                   
                 </div>
             </div>
            ){

@@ -1,4 +1,5 @@
 import {React,useEffect} from "react";
+import 'bootstrap/dist/js/bootstrap.bundle';
 import MovieList from "./components/MovieList";
 import AOS from 'aos';
 import { useDispatch } from "react-redux";
