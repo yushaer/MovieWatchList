@@ -2,7 +2,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap');
 body{
     font-family: 'Roboto', sans-serif;
-    background-color: #1a1a1a;
+    background: #45484d; /* Old browsers */
+    background: -moz-linear-gradient(-45deg, #45484d 0%, #000000 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(-45deg, #45484d 0%,#000000 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(135deg, #45484d 0%,#000000 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', endColorstr='#000000',GradientType=1 ); /* IE6-9 fallback on horizontal gradient 
+    /* Created with https://www.css-gradient.com */
+/* Created with https://www.css-gradient.com */
+
+}
+.moves-menu{
+    border-radius: 4px;
+   
 }
 .movie{
     box-shadow: 0 0.5rem 1rem 5px rgb(106 106 106 / 49%) !important;

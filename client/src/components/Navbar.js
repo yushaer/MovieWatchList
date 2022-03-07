@@ -5,7 +5,7 @@ import {Navbar} from 'react-bootstrap'
  
 const NavBar= (props)=>{
     return(
-        <Navbar bg="light" expand="lg" sticky="top">
+        <Navbar bg="light" expand="lg" sticky="top" className="moves-menu">
         <Container fluid>
           <Navbar.Brand href="#">{props.title}</Navbar.Brand>
           <Navbar.Toggle aria-controls="navbar" />

@@ -14,10 +14,10 @@ const App=()=>{
         dispatch(getPopularMovies());
       }, [dispatch]);
     return(
-       
-        <div className='container container-fluid'>
+           
+        <div className=''>
             
-            <br></br>
+      
             <MovieList/>
             </div>
     );

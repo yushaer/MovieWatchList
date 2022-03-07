@@ -55,6 +55,7 @@ const MovieList=(props)=>{
     return(
         <React.Fragment>
             <Navbar title="Movies" links={navLinks} handleSearch={handleSearch} searchText={"Search Movies"}/>
+           <div className="container container-fluid">
             <div className="row height d-flex justify-content-center align-items-center">
                 <div className="col-md-8">
                    
@@ -72,7 +73,7 @@ const MovieList=(props)=>{
             )
            }
             
-         
+            </div>
         
            </React.Fragment>
     )
