@@ -1,6 +1,7 @@
 import React,{useEffect,useState} from "react";
 import MovieItem from "./MovieItem";
 import MoviesSection from "./MoviesSection";
+import { Container,Nav,NavDropdown,Button,Form,Row,Col  } from 'react-bootstrap';
 import Navbar from "./Navbar";
 import { useSelector,useDispatch  } from "react-redux";
 
@@ -39,29 +40,19 @@ const MovieList=(props)=>{
    
   
     console.log(movies);
-    const navLinks=[
-        {
-            url:"",
-            name:"home"
-        },{
-            url:"#Popular",
-            name:"Popular Movies"
-        },
-        {
-            url:"#Discover",
-            name:"Discover Movies"
-        }
-    ]
+   
     return(
         <React.Fragment>
-            <Navbar title="Movies" links={navLinks} handleSearch={handleSearch} searchText={"Search Movies"}/>
-           <div className="container container-fluid">
-            <div className="row height d-flex justify-content-center align-items-center">
+            <Navbar title="Movies"  handleSearch={handleSearch} searchText={"Search Movies"}/>
+          <Container >
+          
+          
+            <div className=" height d-flex justify-content-center align-items-center">
                 <div className="col-md-8">
                    
                 </div>
             </div>
-           ){
+           {
             + (!search)?(
                 <React.Fragment>
                     < MoviesSection name="Popular" movieobj={movies.popular}/>
@@ -73,7 +64,7 @@ const MovieList=(props)=>{
             )
            }
             
-            </div>
+            </Container>
         
            </React.Fragment>
     )

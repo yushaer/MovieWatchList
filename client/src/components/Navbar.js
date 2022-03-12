@@ -4,6 +4,20 @@ import {Navbar} from 'react-bootstrap'
  import { Container,Nav,NavDropdown,Button,Form,FormControl } from 'react-bootstrap';
  
 const NavBar= (props)=>{
+  const links=[
+    {
+        url:"/",
+        name:"home"
+    },{
+        url:"/#Popular",
+        name:"Popular Movies"
+    },
+    {
+        url:"/#Discover",
+        name:"Discover Movies"
+    },
+    
+]
     return(
         <Navbar bg="light" expand="lg" sticky="top" className="moves-menu">
         <Container fluid>
@@ -16,7 +30,7 @@ const NavBar= (props)=>{
               navbarScroll
             >
                 {
-                    props.links.map((link,idx)=>{
+                    links.map((link,idx)=>{
                         return(
                             <Nav.Link href={link.url}>{link.name}</Nav.Link>
                         )
@@ -33,10 +47,13 @@ const NavBar= (props)=>{
               </NavDropdown> */}
              
             </Nav>
-            <div className="search"> 
+            {props.handleSearch?( <div className="search"> 
                 <i className="fa fa-search"></i> 
                 <input type="text" className="form-control" onKeyDown={props.handleSearch} placeholder={props.searchText}/>
-            </div>
+            </div>):null}
+            <div class="navbar-nav">
+                 <Nav.Link href={"/login"}>{'login'}</Nav.Link>
+              </div>
           </Navbar.Collapse>
         </Container>
       </Navbar>

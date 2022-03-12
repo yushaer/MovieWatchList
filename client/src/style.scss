@@ -72,4 +72,23 @@ body{
     width: 110px;
     background: blue
 }
+.auth-form{
+    border-radius: 0.5rem;
+    box-shadow: black;
+    box-shadow: 0 0.5rem 1rem 5px rgb(106 106 106 / 49%) !important;
+    height: 50vh;
+    background-color: rgb(0 0 0 / 19%);
+}
+
+.form-control{
+
+ 
+
+    text-indent: 25px;
+ 
+}
+.form-control:focus {
+    box-shadow: none;
+    border: 2px solid;
+}
 $box-shadow:  0 .125rem .25rem rgba($white, .075);
