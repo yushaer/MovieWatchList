@@ -4,13 +4,9 @@ import {Popover,OverlayTrigger,Button} from "react-bootstrap";
 import { useSelector  } from "react-redux";
 const MovieItem=(props)=>{
     const[hover,sethover]=useState(false);
-    const[profile,setProfile]=useState({})
-    const selectorData=useSelector((state)=>state.user);
-    useEffect(() => {
-
-      console.log(selectorData) 
-     setProfile(selectorData)
-    }, [selectorData]);
+  
+    const profile=useSelector((state)=>state.user);
+ 
     const handleClick=async()=>{
         const movieData={
           id:props.id,

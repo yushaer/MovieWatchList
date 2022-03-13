@@ -16,21 +16,16 @@ const AuthForm = (props) => {
   const [success,setSuccess]=useState(null);
 const [formData,setFormData]=useState(initialState);
 const history = useNavigate ();
+useEffect(() => {
 
-useEffect(()=>{
-    
-  console.log(selectorData);
-  if(selectorData.isLoggedIn)history("/")
-},[selectorData])
+  console.log(selectorData) 
+ 
+ 
+ if(selectorData.isLoggedIn)history("/")
+}, [selectorData]);
 
-  const register= async function () {
-    try {
-      const{data} = await api.register(formData);
-      console.log(data);
-    } catch (error) {
-      console.log(error.response.data);
-    }
-  }
+
+  
   const handleSubmit = async (e) => {
     e.preventDefault()
     const form = e.currentTarget;
@@ -52,7 +47,7 @@ useEffect(()=>{
           setError(null);
           setSuccess(data.message);
           localStorage.setItem('token', data.token);
-          await dispatch(setUser());
+        //  await dispatch(setUser());
           history("/")
           console.log(data);
         }
@@ -69,8 +64,8 @@ useEffect(()=>{
       e.stopPropagation();
     }
 
-    setValidated(true);
-    console.log(formData);
+   
+   
     
 
     // Do some checks
@@ -82,7 +77,6 @@ useEffect(()=>{
     setFormData({...formData,[e.target.name]:e.target.value});
   }
 
- 
   return (
     <><Navbar title="Movies" /><br></br><div className="container">
 

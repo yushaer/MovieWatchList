@@ -8,13 +8,7 @@ import {setUser} from "../actions/user"
 import AuthForm from "../components/Form";
 
 const Login=()=>{
-  const dispatch=useDispatch();
-  useEffect(() => {
-    
-     
-      dispatch(setUser())
-    }, [dispatch]);
-      
+
       return(
         
           <div className=''>
