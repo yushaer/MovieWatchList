@@ -1,9 +1,20 @@
-import React from "react";
+import {React,useState,useEffect} from "react";
 import 'bootstrap/dist/js/bootstrap.bundle';
 import {Navbar} from 'react-bootstrap'
  import { Container,Nav,NavDropdown,Button,Form,FormControl } from 'react-bootstrap';
- 
+ import { useSelector,useDispatch  } from "react-redux";
+ import {setUser} from '../actions/user'
+ import { useNavigate  } from 'react-router-dom';
 const NavBar= (props)=>{
+  const navigate= useNavigate();
+  const selectorData=useSelector((state)=>state.user);
+    const[profile,setProfile]=useState({})
+    const dispatch=useDispatch();
+   useEffect(() => {
+
+      console.log(selectorData) 
+     setProfile(selectorData)
+    }, [selectorData]);
   const links=[
     {
         url:"/",
@@ -47,13 +58,18 @@ const NavBar= (props)=>{
               </NavDropdown> */}
              
             </Nav>
-            {props.handleSearch?( <div className="search"> 
-                <i className="fa fa-search"></i> 
-                <input type="text" className="form-control" onKeyDown={props.handleSearch} placeholder={props.searchText}/>
-            </div>):null}
-            <div class="navbar-nav">
-                 <Nav.Link href={"/login"}>{'login'}</Nav.Link>
-              </div>
+             
+            
+       
+            {profile.isLoggedIn?(
+              
+              <NavDropdown title={profile.user.username} id="collasible-nav-dropdown">
+              <NavDropdown.Item  onClick={()=>{dispatch({type:"logout"}); navigate('/login')}}>Log Out</NavDropdown.Item>
+            
+            </NavDropdown>
+              ):(  <Nav.Link href={"/login"}>{'login'}</Nav.Link>)}
+               
+         
           </Navbar.Collapse>
         </Container>
       </Navbar>

@@ -1,18 +1,27 @@
-import React, { useEffect, useRef,useState } from 'react';
+import React, { useEffect,useState } from 'react';
 import Navbar from "./Navbar";
 import { Card,Container,Nav,NavDropdown,Button,Form,FormControl,Row,Col,InputGroup} from 'react-bootstrap';
 import CardHeader from 'react-bootstrap/esm/CardHeader';
 import * as api from '../api/index.js';
 import { useNavigate  } from 'react-router-dom';
-
+import { useSelector,useDispatch  } from "react-redux";
+import { setUser } from '../actions/user';
 const initialState = { username: '', email: '', password: '', password2: '' };
 const AuthForm = (props) => {
+  const dispatch=useDispatch();
+  const selectorData=useSelector((state)=>state.user);
   const [validated, setValidated] = useState(false);
+
   const [error,setError]=useState(null);
   const [success,setSuccess]=useState(null);
 const [formData,setFormData]=useState(initialState);
 const history = useNavigate ();
 
+useEffect(()=>{
+    
+  console.log(selectorData);
+  if(selectorData.isLoggedIn)history("/")
+},[selectorData])
 
   const register= async function () {
     try {
@@ -37,6 +46,22 @@ const history = useNavigate ();
           console.log(error.response.data);
         }
       }
+      else{
+        try{
+          const{data}= await api.login(formData)
+          setError(null);
+          setSuccess(data.message);
+          localStorage.setItem('token', data.token);
+          dispatch(setUser())
+          console.log(data);
+        }
+        catch (error) {
+          setError(error.response.data.message);
+          console.log(error.response.data);
+        }
+        
+      }
+
     }
     if (form.checkValidity() === false) {
     

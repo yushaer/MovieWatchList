@@ -43,13 +43,16 @@ const MovieList=(props)=>{
    
     return(
         <React.Fragment>
-            <Navbar title="Movies"  handleSearch={handleSearch} searchText={"Search Movies"}/>
+            <Navbar title="Movies"  />
           <Container >
           
-          
+          <br></br>
             <div className=" height d-flex justify-content-center align-items-center">
                 <div className="col-md-8">
-                   
+                <div className="search"> 
+                <i className="fa fa-search"></i> 
+                <input type="text" className="form-control" onKeyDown={handleSearch} placeholder="Search Movies"/>
+            </div>
                 </div>
             </div>
            {

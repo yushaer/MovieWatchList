@@ -1,7 +1,9 @@
 import moviesList from "../models/movieList.js";
+import Users from '../models/users.js'
 import fetch from 'node-fetch';
 import config from '../movie-config.js'
 import movieConfig from "../movie-config.js";
+
 export const getMoviesList=async(req,res)=>{
     try{
         const movies=await moviesList.find();
@@ -106,25 +108,29 @@ export const getPopularMovies= async(req,res)=>{
 }
 export const addMovies =async(req,res)=>{
     const movieid=req.query.id;
+    const mov=req.body;
    
-    const fetchurl = movieConfig.url.base_url+movieid+"?api_key="+movieConfig.api_key;
-     await fetchFromApi(fetchurl).then(async movie=>{
-        const mov={
-            id:movie.id,
-            title:movie.original_title,
-            release_date: new Date(movie.release_date),
-            language:movie.original_language,
-            imageUrl:movieConfig.url.imageUrl+movie.poster_path
+    try{                                                    
+        const movie_Exists = await moviesList.findOne({user:req.userId,"movie.id":mov.id})
+        console.log(movie_Exists)
+        if(!movie_Exists){
+            const Movie= await new moviesList({movie:mov,user:req.userId});
+            await Movie.save();
+            return res.status(200).json({message:"movie added to watchlist"})
+        }                                                                   
+        else{
+            return res.status(200).json({message:"movie already in watchlist"})
         }
-        const toAdd= await new moviesList({movie:mov});
-        try{
-            toAdd.save();
-            res.status(200).json(toAdd);
-        }catch(error){
-            res.status(404).json({message:error.message});
-        }
+       
 
-     })
+    }
+    catch (err) {
+        console.log(err)
+        res.status(500).json({ message: "Unable to Sign in" });
+      }
+ 
+    
+     
    // const movie= await new moviesList({movieId:movieid,imageUrl:img_url})
     
 }
