@@ -43,28 +43,7 @@ export const getMoviesBySearch= async(req,res)=>{
             page=req.query.page;
         }
         const movies= await fetchFromApi(movieConfig.url.search+req.query.movieName+"&page="+page)
-        //.then(movies=>{
-        // movies.results.forEach(async movie => {
-        //     //console.log(movie);
-        //     const mov={
-        //         id:movie.id,
-        //         title:movie.original_title,
-        //         release_date: new Date(movie.release_date),
-        //         language:movie.original_language,
-        //         imageUrl:movie.poster_path
-        //     }
-        //     const movie_data= await new moviesList({movie:mov});
-        //         try{
-        //             movie_data.save();
-                
-        //         }catch(error){
-        //             res.status(404).json({message:error.message});
-        //         }
-        //     });
-           
-           
-             
-        // });
+     
         res.status(200).json(movies);
        // console.log(movies);
        

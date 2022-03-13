@@ -52,7 +52,8 @@ useEffect(()=>{
           setError(null);
           setSuccess(data.message);
           localStorage.setItem('token', data.token);
-          dispatch(setUser())
+          await dispatch(setUser());
+          history("/")
           console.log(data);
         }
         catch (error) {
