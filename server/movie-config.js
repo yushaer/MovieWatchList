@@ -6,6 +6,6 @@
     imageUrl:"https://image.tmdb.org/t/p/w185",
     popular:"https://api.themoviedb.org/3/movie/popular?api_key=2f556831a7a3e6aee32d32d69d00089a"
   },
-  token_secret:"ElonMusk"
+  token_secret:"ronanisgay"
 }
 export default config

@@ -1,6 +1,13 @@
 import {React,useEffect} from "react";
-import 'bootstrap/dist/js/bootstrap.bundle';
+import {
+    BrowserRouter,
+    Routes,
+    Route,
+  } from "react-router-dom";
+import 'mdb-react-ui-kit/dist/css/mdb.min.css'
+import AuthForm from './components/Form'
 import MovieList from "./components/MovieList";
+import WatchList from "./components/WatchList";
 import AOS from 'aos';
 import { useDispatch } from "react-redux";
 import {setUser} from "./actions/user"
@@ -18,11 +25,18 @@ const App=()=>{
       }, [dispatch]);
     return(
            
-        <div className=''>
-            
       
-            <MovieList/>
-            </div>
+            <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<MovieList />} />
+      <Route path="/watchlist" element={<WatchList />} />
+      <Route path="/login" element={<AuthForm title="Login" type="login" />} />
+      <Route path="/register" element={ <AuthForm title="Register" type="register" />} />
+    </Routes>
+  </BrowserRouter>
+      
+            
+            
     );
 };
 export default App;

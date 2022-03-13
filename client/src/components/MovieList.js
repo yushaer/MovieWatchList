@@ -6,6 +6,7 @@ import Navbar from "./Navbar";
 import { useSelector,useDispatch  } from "react-redux";
 
 import {searchMovies} from '../actions/movie'
+import {setUser} from '../actions/user'
 import moment from 'moment'
 
 const MovieList=(props)=>{
@@ -14,7 +15,7 @@ const MovieList=(props)=>{
     const[search,setSearch]=useState(false);
     const dispatch=useDispatch();
     useEffect(()=>{
-    
+        dispatch(setUser())
         setMovies(selectorData)
     },[selectorData])
     function test(){

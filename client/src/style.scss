@@ -1,9 +1,10 @@
-@import "../node_modules/bootstrap/scss/bootstrap.scss";
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap');
+@import "../node_modules/mdb-react-ui-kit/dist/scss/mdb.core.scss";
+
+
 body{
-    font-family: 'Roboto', sans-serif;
+    font-family: Roboto, Helvetica, Arial, sans-serif;
     background: #45484d; /* Old browsers */
-   
+
    
     /* Created with https://www.css-gradient.com */
 /* Created with https://www.css-gradient.com */
@@ -74,19 +75,8 @@ body{
     border-radius: 0.5rem;
     box-shadow: black;
     box-shadow: 0 0.5rem 1rem 5px rgb(106 106 106 / 49%) !important;
-    height: 50vh;
-    background-color: rgb(0 0 0 / 19%);
-}
-
-.form-control{
-
- 
-
-    text-indent: 25px;
  
 }
-.form-control:focus {
-    box-shadow: none;
-    border: 2px solid;
-}
+
+
 $box-shadow:  0 .125rem .25rem rgba($white, .075);

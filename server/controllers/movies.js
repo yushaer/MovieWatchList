@@ -43,7 +43,7 @@ export const getMoviesBySearch= async(req,res)=>{
             page=req.query.page;
         }
         const movies= await fetchFromApi(movieConfig.url.search+req.query.movieName+"&page="+page)
-     
+        
         res.status(200).json(movies);
        // console.log(movies);
        
@@ -105,7 +105,7 @@ export const addMovies =async(req,res)=>{
     }
     catch (err) {
         console.log(err)
-        res.status(500).json({ message: "Unable to Sign in" });
+        res.status(500).json({ message: "Unable to add movie" });
       }
  
     
