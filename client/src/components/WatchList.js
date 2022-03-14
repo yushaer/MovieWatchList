@@ -48,7 +48,7 @@ return (
           <div className="row height ">
           {unwatched.map((movie,idx)=>{
                     return(<div className="col-lg-3 ">
-                        <MovieCard idx={idx} movieId={movie._id} type="watchlist" btnText="Add to Watched" {...movie.movie}/>
+                        <MovieCard idx={idx} movieId={movie._id} type="watchlist" btnText="Set As Watched" {...movie.movie}/>
                         
                         </div>
                         

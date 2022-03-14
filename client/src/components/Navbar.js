@@ -17,7 +17,7 @@ import {
   MDBDropdownLink,
   MDBCollapse
 } from 'mdb-react-ui-kit';
-import {Link} from 'react-router-dom'
+import { HashLink as Link } from 'react-router-hash-link';
  
  import { useSelector,useDispatch  } from "react-redux";
  import {setUser} from '../actions/user'
