@@ -16,6 +16,9 @@ export const getMoviesList=async(req,res)=>{
 export const updateMovie =async(req,res)=>{
     try{
         
+        if(!req.body.id){
+            return res.status(404).json({message:"id parameter is not present in request body"});
+        }
         const movie=await moviesList.findOne({_id:req.body.id});
         movie.watched=!movie.watched
         movie.save();
@@ -27,7 +30,9 @@ export const updateMovie =async(req,res)=>{
 }
 export const deleteMovie =async(req,res)=>{
     try{
-       
+        if(!req.query.id){
+            return res.status(404).json({message:"id parameter is required"});
+        }
         const movie=await moviesList.findByIdAndRemove(req.query.id);
        console.log(req.query)
     ///console.log(movie);
