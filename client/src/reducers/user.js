@@ -10,7 +10,7 @@ const userReducer= (state={user:null,isLoggedIn:false,watchList:[]},action)=>{
         case 'logout':
             
             localStorage.clear();
-            return {...state,user:null,isLoggedIn:false};
+            return {...state,user:null,isLoggedIn:false,watchList:[]};
          
        
         default:
