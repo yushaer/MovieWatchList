@@ -4,7 +4,8 @@ import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBCard, MDBCardBody, MDBInput } 
 import * as api from '../api/index.js';
 import { useNavigate,Link  } from 'react-router-dom';
 import { useSelector,useDispatch  } from "react-redux";
-import { setUser } from '../actions/user';
+import { setUser,getWatchList } from '../actions/user';
+
 const initialState = { username: '', email: '', password: '', password2: '' };
 const AuthForm = (props) => {
   const dispatch=useDispatch();
@@ -47,6 +48,7 @@ useEffect(() => {
           setSuccess(data.message);
           localStorage.setItem('token', data.token);
           localStorage.setItem('user',JSON.stringify({...data.User,isLoggedIn:true}))
+          dispatch(getWatchList())
         //  await dispatch(setUser());
           history("/")
           console.log(data);
