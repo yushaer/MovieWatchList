@@ -6,19 +6,44 @@ import movieConfig from "../movie-config.js";
 
 export const getMoviesList=async(req,res)=>{
     try{
-        const movies=await moviesList.find();
-        console.log(movies);
+        const movies=await moviesList.find({user:req.userId});
+   // console.log(movies);
         res.status(200).json(movies);
     }catch(error){
         res.status(404).json({message:error.message});
     }
 }
+export const updateMovie =async(req,res)=>{
+    try{
+        
+        const movie=await moviesList.findOne({_id:req.body.id});
+        movie.watched=!movie.watched
+        movie.save();
+    //console.log(movie);
+        res.status(200).json(movie);
+    }catch(error){
+        res.status(404).json({message:error.message});
+    }
+}
+export const deleteMovie =async(req,res)=>{
+    try{
+       
+        const movie=await moviesList.findByIdAndRemove(req.query.id);
+       console.log(req.query)
+    ///console.log(movie);
+        res.status(200).json({message:"movie removed from watch list"});
+    }catch(error){
+        console.log(error)
+        res.status(404).json({message:error.message});
+    }
+}
+
 
 async function fetchFromApi(url){
     
         const resp = await fetch(url);
         const data = resp.json();
-        console.log(data)
+        //console.log(data)
         return data;
       
 }
@@ -64,14 +89,14 @@ export const getPopularMovies= async(req,res)=>{
         let pages=[movieConfig.url.popular+"&page="+1,movieConfig.url.popular+"&page="+2,movieConfig.url.popular+"&page="+3]
         fetchMovies(pages).then(posts => {
             let postSet = new Set()
-            console.log(posts);
+           // console.log(posts);
             posts.forEach(page => {
                 page.results.forEach(page => {
                     postSet.add(page)
                 });
             });
             const post_arr=Array.from(postSet);
-            console.log(post_arr);
+           // console.log(post_arr);
             res.status(200).json({results:post_arr});
         })
             
@@ -91,7 +116,7 @@ export const addMovies =async(req,res)=>{
    
     try{                                                    
         const movie_Exists = await moviesList.findOne({user:req.userId,"movie.id":mov.id})
-        console.log(movie_Exists)
+      //  console.log(movie_Exists)
         if(!movie_Exists){
             const Movie= await new moviesList({movie:mov,user:req.userId});
             await Movie.save();

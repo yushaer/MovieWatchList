@@ -1,5 +1,5 @@
 import React,{useEffect,useState} from "react";
-import MovieItem from "./MovieItem";
+import MovieItem from "./MovieCard";
 import MoviesSection from "./MoviesSection";
 import { Container,Nav,NavDropdown,Button,Form,Row,Col  } from 'react-bootstrap';
 import Navbar from "./Navbar";

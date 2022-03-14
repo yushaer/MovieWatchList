@@ -29,7 +29,7 @@ const NavBar= (props)=>{
     const dispatch=useDispatch();
     const [showBasic, setShowBasic] = useState(false);
    useEffect(() => {
-
+  
       console.log(selectorData) 
      setProfile(selectorData)
     }, [selectorData]);
@@ -92,7 +92,7 @@ const NavBar= (props)=>{
                 </MDBDropdownToggle>
                 <MDBDropdownMenu>
                   <MDBDropdownItem>
-                    <MDBDropdownLink onClick={()=>{dispatch({type:"logout"}); navigate('/login')}}>Log Out</MDBDropdownLink>
+                    <MDBDropdownLink onClick={()=>{    localStorage.clear(); dispatch({type:"logout"}); navigate('/login')}}>Log Out</MDBDropdownLink>
                   </MDBDropdownItem>
                   
                 </MDBDropdownMenu>

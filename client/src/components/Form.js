@@ -19,8 +19,8 @@ useEffect(() => {
 
   console.log(selectorData) 
  
- 
- if(selectorData.isLoggedIn)history("/")
+ const user = JSON.parse(localStorage.getItem("user"));
+ if(selectorData.isLoggedIn||user)history("/")
 }, [selectorData]);
 
 
@@ -46,6 +46,7 @@ useEffect(() => {
           setError(null);
           setSuccess(data.message);
           localStorage.setItem('token', data.token);
+          localStorage.setItem('user',JSON.stringify({...data.User,isLoggedIn:true}))
         //  await dispatch(setUser());
           history("/")
           console.log(data);
