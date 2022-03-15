@@ -17,9 +17,7 @@ import "../src/style.scss";
 import 'aos/dist/aos.css';
 import App from './App';
 import WatchList from './components/WatchList';
-import Register from './routes/Register';
 
-import Login from './routes/Login';
 //window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 const store =createStore(reducers,{},compose( applyMiddleware(thunk)));
 ReactDOM.render(
