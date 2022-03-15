@@ -51,13 +51,9 @@ return (
      <MDBContainer>
      
       <MDBRow className="justify-content-center">
-        <MDBCol md="6">
-        
-        
-
-        </MDBCol>
-        </MDBRow><h1 className='text-center text-light'>{toggleWatched?"Watched Movies":"Unwatched"}</h1>
-        <MDBTabs pills className='mb-3 move-tabs'>
+        <MDBCol md="12">
+        <h1 className='text-center text-light'>{toggleWatched?"Watched Movies":"Unwatched"}</h1>
+        <MDBTabs pills className='mb-3 move-tabs justify-content-center'>
         <MDBTabsItem>
           <MDBTabsLink onClick={() => setToggleWatched(false)} active={!toggleWatched}>
             WatchList
@@ -102,6 +98,10 @@ return (
                                 </div></section></MDBTabsPane>
         
       </MDBTabsContent>
+        
+
+        </MDBCol>
+        </MDBRow>
       <section>
       
         </section>  

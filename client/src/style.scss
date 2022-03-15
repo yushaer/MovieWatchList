@@ -32,10 +32,16 @@ body{
 }
 .move-tabs{
     border-radius: 0.4rem;
-    background-color: #e3ebf66c;
+    text-align: center;
+    width:50%;
+    
+    margin:0 auto;
     box-shadow: 0 0.5rem 1rem 5px rgb(35 34 34 / 49%) !important;
 
 
+}
+.move-tabs .nav-item .nav-link {
+    width: 165px;
 }
 .card-img {
     width: 100%;
@@ -93,3 +99,22 @@ body{
 
 
 $box-shadow:  0 .125rem .25rem rgba($white, .075);
+@media only screen and (max-width: 600px) {
+    
+    .move-tabs{
+  
+        width:100%;
+
+    
+    
+    }
+  }
+  @media only screen and (max-width: 800px) {
+    
+    .move-tabs{
+    
+        width:80%;
+        
+    
+    }
+  }
