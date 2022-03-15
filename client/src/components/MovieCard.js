@@ -108,7 +108,7 @@ const MovieCard=(props)=>{
         <h3 className="card-title">{props.title}</h3>
         
         <span class="movie_info float-start">{props.type=="watchlist"?new moment(props.release_date).format("YYYY MM DD"):props.release_date}</span>
-        <span class="movie_info float-end">{props.type=="watchlist"?(<MDBBtn className='text-dark' color='danger' onClick={handleDelete} >delete</MDBBtn>):(<><i class="fas fa-star"></i>{props.vote_average}</>)}</span>
+        <span class="movie_info float-end">{props.type=="watchlist"?(<MDBBtn className='text-light' color='danger' onClick={handleDelete} >delete</MDBBtn>):(<><i class="fas fa-star"></i>{props.vote_average}</>)}</span>
       
         </MDBCardBody>
         
