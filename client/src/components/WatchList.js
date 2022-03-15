@@ -56,15 +56,15 @@ return (
         
 
         </MDBCol>
-        </MDBRow>
-        <MDBTabs pills className='mb-3 bg-light'>
+        </MDBRow><h1 className='text-center text-light'>{toggleWatched?"Watched Movies":"Unwatched"}</h1>
+        <MDBTabs pills className='mb-3 move-tabs'>
         <MDBTabsItem>
-          <MDBTabsLink onClick={() => handleBasicClick('tab1')} active={basicActive === 'tab1'}>
+          <MDBTabsLink onClick={() => setToggleWatched(false)} active={!toggleWatched}>
             WatchList
           </MDBTabsLink>
         </MDBTabsItem>
         <MDBTabsItem>
-          <MDBTabsLink onClick={() => handleBasicClick('tab2')} active={basicActive === 'tab2'}>
+          <MDBTabsLink onClick={() => setToggleWatched(true)} active={toggleWatched}>
           Watched Movies
           </MDBTabsLink>
         </MDBTabsItem>
@@ -74,9 +74,9 @@ return (
       </MDBTabs>
 
       <MDBTabsContent >
-        <MDBTabsPane show={basicActive === 'tab1'}><section>
+        <MDBTabsPane show={!toggleWatched}><section>
             
-        <h1 className='text-center text-light'>Unwatched</h1><div className="row height ">
+        <h1 className='text-center text-light'></h1><div className="row height ">
                     {unwatched.map((movie, idx) => {
                         return (<div className="col-lg-3 ">
                             <MovieCard idx={idx} movieId={movie._id} type="watchlist" btnText="Set As Watched" {...movie.movie} />
@@ -89,7 +89,7 @@ return (
             
             
             </section></MDBTabsPane>
-        <MDBTabsPane show={basicActive === 'tab2'}><section><h1 className='text-center text-light'>Watched Movies</h1>
+        <MDBTabsPane show={toggleWatched}><section>
              <div className="row height ">                        
                 {watched.map((movie, idx) => {
                             return (
