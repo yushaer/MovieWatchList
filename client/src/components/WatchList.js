@@ -9,8 +9,7 @@ import { MDBContainer, MDBRow, MDBCol,MDBTabs,
 import * as api from '../api/index.js';
 import { useNavigate,Link  } from 'react-router-dom';
 import { useSelector,useDispatch  } from "react-redux";
-import {setUser,getWatchList} from '../actions/user';
-import { MDBSwitch } from 'mdb-react-ui-kit'
+
 
 const WatchList =(props)=>{
  
@@ -19,15 +18,8 @@ const WatchList =(props)=>{
     const userData=useSelector((state)=>state.user);
     const history = useNavigate ();
     const [profile,setProfile]=useState({isLoggedIn:true,watchList:[]})
-    const [basicActive, setBasicActive] = useState('tab1');
-    const handleBasicClick = (value) => {
-        if (value === basicActive) {
-          return;
-        }
-    
-        setBasicActive(value);
-      };
-    
+  
+
 useEffect(() => {
  
     const user = JSON.parse(localStorage.getItem("user"));

@@ -1,14 +1,17 @@
 import React,{useState,useEffect} from "react";
 import * as api from '../api/index.js';
-import { useNavigate,Link  } from 'react-router-dom';
+import {isMobile} from 'react-device-detect';
+
+import { useNavigate} from 'react-router-dom';
 import {Popover,OverlayTrigger,Button} from "react-bootstrap";
 import { MDBCard, MDBCardBody, MDBCardTitle, MDBCardText, MDBCardImage, MDBBtn, MDBRipple,MDBPopover, MDBPopoverBody, MDBPopoverHeader } from 'mdb-react-ui-kit';
 import { useSelector,useDispatch } from "react-redux";
-import {setUser,getWatchList} from '../actions/user'
+import {getWatchList} from '../actions/user'
 import moment from "moment";
 const MovieCard=(props)=>{
     const[hover,sethover]=useState(false);
     const[profile,setProfile]=useState({});
+ 
     const profileData=useSelector((state)=>state.user);
   const navigate=useNavigate();
   const dispatch=useDispatch();
@@ -69,7 +72,7 @@ const MovieCard=(props)=>{
     );
     const CardHeader=()=>{
       if(props.type=="watchlist"){
-        return(<><MDBCardImage class="card-img" src={props.imageUrl != null ? (props.imageUrl) : "https://image.cnbcfm.com/api/v1/image/106988339-1639402354290-gettyimages-1229892421-urnnewsmldpacom20090101201201-90-025559.jpeg?v=1645216444&w=929&h=523"} fluid alt='...' />
+        return(<><MDBCardImage className="card-img" src={props.imageUrl != null ? (props.imageUrl) : "https://image.cnbcfm.com/api/v1/image/106988339-1639402354290-gettyimages-1229892421-urnnewsmldpacom20090101201201-90-025559.jpeg?v=1645216444&w=929&h=523"} fluid alt='...' />
         <div className='mask text-center text-center mx-auto justify-content-center card-img-overlay' style={{ backgroundColor: 'rgba(251, 251, 251, 0.15)' }}>
         {hover ?
           <MDBBtn className='text-dark' color='light' onClick={handleClick}>{props.btnText}</MDBBtn>
@@ -77,8 +80,8 @@ const MovieCard=(props)=>{
         </div></>)
                     }
         else {
-          return (<><MDBCardImage class="card-img" src={props.poster_path != null ? ("https://image.tmdb.org/t/p/w185/" + props.poster_path) : "https://image.cnbcfm.com/api/v1/image/106988339-1639402354290-gettyimages-1229892421-urnnewsmldpacom20090101201201-90-025559.jpeg?v=1645216444&w=929&h=523"} fluid alt='...' />
-          <OverlayTrigger trigger={["focus", "hover"]} placement={'right'} overlay={overview}>
+          return (<><MDBCardImage className="card-img" src={props.poster_path != null ? ("https://image.tmdb.org/t/p/w185/" + props.poster_path) : "https://image.cnbcfm.com/api/v1/image/106988339-1639402354290-gettyimages-1229892421-urnnewsmldpacom20090101201201-90-025559.jpeg?v=1645216444&w=929&h=523"} fluid alt='...' />
+          <OverlayTrigger trigger={["focus", "hover"]} placement={isMobile?'bottom':'right'} overlay={overview}>
 
                 <div className='mask text-center text-center mx-auto justify-content-center card-img-overlay' style={{ backgroundColor: 'rgba(251, 251, 251, 0.15)' }}>
                   {hover && profile.isLoggedIn ?
@@ -107,8 +110,8 @@ const MovieCard=(props)=>{
         
         <h3 className="card-title">{props.title}</h3>
         
-        <span class="movie_info float-start">{props.type=="watchlist"?new moment(props.release_date).format("YYYY MM DD"):props.release_date}</span>
-        <span class="movie_info float-end">{props.type=="watchlist"?(<MDBBtn className='text-light' color='danger' onClick={handleDelete} >delete</MDBBtn>):(<><i class="fas fa-star"></i>{props.vote_average}</>)}</span>
+        <span className="movie_info float-start">{props.type=="watchlist"?new moment(props.release_date).format("YYYY MM DD"):props.release_date}</span>
+        <span className="movie_info float-end">{props.type=="watchlist"?(<MDBBtn className='text-light' color='danger' onClick={handleDelete} >delete</MDBBtn>):(<><i className="fas fa-star"></i>{props.vote_average}</>)}</span>
       
         </MDBCardBody>
         

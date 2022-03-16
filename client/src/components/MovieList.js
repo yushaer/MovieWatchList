@@ -1,5 +1,5 @@
 import React,{useEffect,useState} from "react";
-import MovieItem from "./MovieCard";
+
 import MoviesSection from "./MoviesSection";
 import { Container,Nav,NavDropdown,Button,Form,Row,Col  } from 'react-bootstrap';
 import Navbar from "./Navbar";
@@ -7,7 +7,7 @@ import { useSelector,useDispatch  } from "react-redux";
 
 import {searchMovies} from '../actions/movie'
 import {setUser} from '../actions/user'
-import moment from 'moment'
+
 
 const MovieList=(props)=>{
     const selectorData=useSelector((state)=>state.movies);
@@ -40,7 +40,7 @@ const MovieList=(props)=>{
     }
    
   
-    console.log(movies);
+   // console.log(movies);
    
     return(
         <React.Fragment>
