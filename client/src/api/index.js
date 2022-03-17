@@ -1,7 +1,8 @@
 import axios from 'axios';
 
 const base_url='http://localhost:5000/'
-const API = axios.create({ baseURL: 'https://moviewatchlistapi.herokuapp.com/' });
+const produc_server_url='https://moviewatchlistapi.herokuapp.com/'
+const API = axios.create({ baseURL: produc_server_url });
 
 API.interceptors.request.use((req) => {
   if (localStorage.getItem('token')) {
@@ -10,6 +11,7 @@ API.interceptors.request.use((req) => {
 
   return req;
 });
+
 export const register = (formData) => API.post('/user/register', formData);
 export const login = (formData) => API.post('/user/login', formData);
 export const getUser = () => API.get('/user/');

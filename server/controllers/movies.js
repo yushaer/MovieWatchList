@@ -7,12 +7,13 @@ import movieConfig from "../movie-config.js";
 export const getMoviesList=async(req,res)=>{
     try{
         const movies=await moviesList.find({user:req.userId});
-   // console.log(movies);
+console.log(movies.length);
         res.status(200).json(movies);
     }catch(error){
         res.status(404).json({message:error.message});
     }
 }
+
 export const updateMovie =async(req,res)=>{
     try{
         
@@ -51,6 +52,25 @@ async function fetchFromApi(url){
         //console.log(data)
         return data;
       
+}
+export const getRecommendedMovies=async(req,res)=>{
+    try{
+        const movies=await moviesList.find({user:req.userId});
+        if(movies.length>0){
+            const movie=movies[Math.floor(Math.random()*movies.length)];
+            const movieurl= movieConfig.url.base_url+movie.movie.id+"/recommendations?api_key="+movieConfig.api_key;
+            const recomended = await fetchFromApi(movieurl);
+            //console.log(recomended)
+            return res.status(200).json(recomended);
+        }
+        else {
+            return res.status(404).json({message:"No movie present in the watchlist to reccomend from"})
+        }
+
+       
+    }catch(error){
+        res.status(404).json({message:error.message});
+    }
 }
 async function fetchMovies(pages) {
     return await Promise.all(  pages.map(async page => {

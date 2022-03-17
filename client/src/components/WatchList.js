@@ -7,7 +7,8 @@ import { MDBContainer, MDBRow, MDBCol,MDBTabs,
     MDBTabsContent,
     MDBTabsPane } from 'mdb-react-ui-kit';
 import * as api from '../api/index.js';
-import { useNavigate,Link  } from 'react-router-dom';
+import {setUser} from '../actions/user'
+import { useNavigate  } from 'react-router-dom';
 import { useSelector,useDispatch  } from "react-redux";
 
 
@@ -27,10 +28,12 @@ useEffect(() => {
  if(!user){
     history('/login')
 }       
+dispatch(setUser())
  //api.getWatchList()
-    
+   
     setProfile(userData);
 }, [userData]);
+
 
  let unwatched= profile.watchList.filter((movie,idx)=>movie.watched==false
     );

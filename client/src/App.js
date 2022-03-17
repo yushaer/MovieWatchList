@@ -33,8 +33,12 @@ const App=()=>{
       
             <BrowserRouter>
     <Routes>
-      <Route path="/" element={<MovieList />} />
-      <Route path="/watchlist" element={<WatchList />} />
+      
+      <Route path="/popular" element={<MovieList name="Popular" type="popular" />} />
+     
+      <Route path="/discover" element={<MovieList name="Discover" type="featured" />} />
+      <Route path="/recommended" element={<MovieList type="recomended" name="Recommended Movies"  />} />
+      <Route path="/" element={<WatchList />} />
       <Route path="/login" element={<AuthForm title="Login" type="login" />} />
       <Route path="/register" element={ <AuthForm title="Register" type="register" />} />
     </Routes>

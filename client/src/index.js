@@ -6,6 +6,7 @@ import 'mdb-react-ui-kit/dist/css/mdb.min.css'
 import { createStore,applyMiddleware,compose } from 'redux';
 import thunk from 'redux-thunk';
 import reducers from './reducers';
+import { composeWithDevTools } from 'redux-devtools-extension';
 import {
     BrowserRouter,
     Routes,
@@ -19,7 +20,7 @@ import App from './App';
 import WatchList from './components/WatchList';
 
 //window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-const store =createStore(reducers,{},compose( applyMiddleware(thunk)));
+const store =createStore(reducers,{},composeWithDevTools( applyMiddleware(thunk)));
 ReactDOM.render(
  <Provider store={store} >  
 <App/>

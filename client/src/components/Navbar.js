@@ -36,11 +36,11 @@ const NavBar= (props)=>{
         url:"/",
         name:"home"
     },{
-        url:"/#Popular",
+        url:"/popular",
         name:"Popular Movies"
     },
     {
-        url:"/#Discover",
+        url:"/discover",
         name:"Discover Movies"
     },
     
@@ -71,9 +71,11 @@ const NavBar= (props)=>{
                     })
                 }
        {profile.isLoggedIn?(
-                  <MDBNavbarItem>
-                  <Link to='/watchlist' className="nav-link">watchlist</Link>
-                  </MDBNavbarItem>
+         <><MDBNavbarItem>
+                  <Link to='/recommended' className="nav-link">Recommended Movies</Link>
+                </MDBNavbarItem><MDBNavbarItem>
+                    <Link to='/watchlist' className="nav-link">watchlist</Link>
+                  </MDBNavbarItem></>
                 ):""
                 }
 

@@ -30,6 +30,19 @@ body{
   width:0;
   height: 0;
 }
+.loader{
+    
+        position:fixed;
+        z-index:99;/* make higher than whatever is on the page */
+        top:0;
+        left:0;
+        right:0;
+        bottom:0;
+        margin:auto;
+     
+    
+ 
+}
 .move-tabs{
     border-radius: 0.4rem;
     text-align: center;
