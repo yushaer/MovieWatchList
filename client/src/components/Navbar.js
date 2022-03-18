@@ -32,10 +32,7 @@ const NavBar= (props)=>{
      setProfile(selectorData)
     }, [selectorData]);
   const links=[
-    {
-        url:"/",
-        name:"home"
-    },{
+  {
         url:"/popular",
         name:"Popular Movies"
     },
@@ -46,9 +43,9 @@ const NavBar= (props)=>{
     
 ]
     return(
-      <MDBNavbar expand='lg' light bgColor='light'>
+      <MDBNavbar  sticky expand='lg' dark bgColor='dark'>
       <MDBContainer fluid>
-        <MDBNavbarBrand href='#'>{props.title}</MDBNavbarBrand>
+        <MDBNavbarBrand href='#'>YR Studio</MDBNavbarBrand>
 
         <MDBNavbarToggler
           aria-controls='navbarSupportedContent'
@@ -61,6 +58,17 @@ const NavBar= (props)=>{
 
         <MDBCollapse navbar show={showBasic}>
           <MDBNavbarNav className='mr-auto mb-2 mb-lg-0'>
+          {profile.isLoggedIn?(
+         <>
+                <MDBNavbarItem>
+                    <Link to='/' className="nav-link">Watchlist</Link>
+                  </MDBNavbarItem>
+         <MDBNavbarItem>
+                  
+                  <Link to='/recommended' className="nav-link">Recommended Movies</Link>
+                </MDBNavbarItem></>
+                ):""
+                }
             {
                     links.map((link,idx)=>{
                         return(
@@ -70,14 +78,7 @@ const NavBar= (props)=>{
                         )
                     })
                 }
-       {profile.isLoggedIn?(
-         <><MDBNavbarItem>
-                  <Link to='/recommended' className="nav-link">Recommended Movies</Link>
-                </MDBNavbarItem><MDBNavbarItem>
-                    <Link to='/watchlist' className="nav-link">watchlist</Link>
-                  </MDBNavbarItem></>
-                ):""
-                }
+      
 
          
 
@@ -85,13 +86,14 @@ const NavBar= (props)=>{
           </MDBNavbarNav>
           <MDBNavbarNav right fullWidth={false} >
                {profile.isLoggedIn?(
-              <MDBNavbarItem>
-              <MDBDropdown>
-                <MDBDropdownToggle tag='a' className='nav-link'>
+              <MDBNavbarItem >
+              <MDBDropdown >
+                <MDBDropdownToggle tag='a' className='nav-link' color='dark'>
                 {profile.user.username}
                 </MDBDropdownToggle>
-                <MDBDropdownMenu>
-                  <MDBDropdownItem>
+                <MDBDropdownMenu dark color='dark'>
+                  
+                  <MDBDropdownItem  active="false" data-active="false" color='dark'>
                     <MDBDropdownLink onClick={()=>{    localStorage.clear(); dispatch({type:"logout"}); navigate('/login')}}>Log Out</MDBDropdownLink>
                   </MDBDropdownItem>
                   

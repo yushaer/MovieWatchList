@@ -20,7 +20,7 @@ export const getWatchList=()=> async(dispatch)=>{
     try {
         if (localStorage.getItem('token')){
             const {data}=await api.getWatchList();
-            console.log(data)
+            //console.log(data)
          dispatch({type:'getWatch',payload:{watchList:data}});
         }
        

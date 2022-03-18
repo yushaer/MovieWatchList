@@ -78,7 +78,7 @@ const MovieList=(props)=>{
                     <span className='visually-hidden'>Loading...</span>
                 </MDBSpinner>
               
-                </div>):(<React.Fragment>
+                </div>):(<React.Fragment><br></br>
                 < MoviesSection name={ !search?props.name:"Results"} movieobj={!search?movies[props.type]:movies.search}/>
             {/* < MoviesSection name="Popular" movieobj={movies.popular}/>
             < MoviesSection name="Discover" movieobj={movies.featured}/> */}

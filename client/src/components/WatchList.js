@@ -28,18 +28,28 @@ useEffect(() => {
  if(!user){
     history('/login')
 }       
-dispatch(setUser())
+
  //api.getWatchList()
    
     setProfile(userData);
 }, [userData]);
+useEffect(() => {
+ 
+  
+   
+dispatch(setUser())
+//api.getWatchList()
+ 
+  
+}, [dispatch]);
+
 
 
  let unwatched= profile.watchList.filter((movie,idx)=>movie.watched==false
     );
 let watched= profile.watchList.filter((movie,idx)=>movie.watched==true
     );
- console.log( unwatched)
+ //console.log( unwatched)
 return (
     
     <><Navbar title="Movies" /><br></br>
@@ -69,8 +79,8 @@ return (
             
         <h1 className='text-center text-light'></h1><div className="row height ">
                     {unwatched.map((movie, idx) => {
-                        return (<div className="col-lg-3 ">
-                            <MovieCard idx={idx} movieId={movie._id} type="watchlist" btnText="Set As Watched" {...movie.movie} />
+                        return (<div key={idx} className="col-lg-3 ">
+                            <MovieCard  movieId={movie._id} type="watchlist" btnText="Set As Watched" {...movie.movie} />
 
                         </div>
 
@@ -84,8 +94,8 @@ return (
              <div className="row height ">                        
                 {watched.map((movie, idx) => {
                             return (
-                                    <div className="col-lg-3 ">
-                                    <MovieCard idx={idx} movieId={movie._id} type="watchlist" btnText="Remove from Watched" {...movie.movie} />
+                                    <div key={idx} className="col-lg-3 ">
+                                    <MovieCard  movieId={movie._id} type="watchlist" btnText="Remove from Watched" {...movie.movie} />
                                     </div>
 
                                         );

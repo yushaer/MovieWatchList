@@ -1,6 +1,6 @@
 import * as api from "../api"
 export const getFeaturedMovies=()=> async(dispatch)=>{
-    console.log("test")
+   // console.log("test")
     try {
         dispatch({type:"loading",payload:{isLoading:true}});
         const {data}=await api.fetchFromAPI("/movies/featured")
@@ -26,7 +26,7 @@ export const getRecommendedMovies=()=> async(dispatch)=>{
  
 }
 export const getPopularMovies=()=> async(dispatch)=>{
-    console.log("test")
+    //console.log("test")
     try {
         dispatch({type:"loading",payload:{isLoading:true}});
         const {data}=await api.fetchFromAPI("/movies/popular")
@@ -40,7 +40,7 @@ export const getPopularMovies=()=> async(dispatch)=>{
 }
 
 export const searchMovies=(name)=> async(dispatch)=>{
-    console.log("search " + name)
+    //console.log("search " + name)
     try {
         dispatch({type:"loading",payload:{isLoading:true}});
         const {data}=await api.fetchFromAPI("/movies/search?movieName="+name);
