@@ -1,7 +1,7 @@
 import React,{useEffect,useState} from "react";
 
 import MoviesSection from "./MoviesSection";
-import { Container,Nav,NavDropdown,Button,Form,Row,Col  } from 'react-bootstrap';
+import { Container  } from 'react-bootstrap';
 import Navbar from "./Navbar";
 import  Pagination from "./Pagination";
 import { useSelector,useDispatch  } from "react-redux";
@@ -105,7 +105,7 @@ const MovieList=(props)=>{
                 < MoviesSection name={ !search?props.name:"Results"} movieobj={!search?movies[props.type]:movies.search}/>
             {/* < MoviesSection name="Popular" movieobj={movies.popular}/>
             < MoviesSection name="Discover" movieobj={movies.featured}/> */}
-           {!search? (<Pagination type={props.type} page={page}/>):''}
+           {!search? (<Pagination type={props.type} movieobj={movies[props.type]} page={page}/>):''}
     </React.Fragment>
     )
                 

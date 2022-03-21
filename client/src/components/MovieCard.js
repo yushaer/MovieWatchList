@@ -3,8 +3,8 @@ import * as api from '../api/index.js';
 import {isMobile} from 'react-device-detect';
 
 import { useNavigate} from 'react-router-dom';
-import {Popover,OverlayTrigger,Button} from "react-bootstrap";
-import { MDBCard, MDBCardBody, MDBCardTitle, MDBCardText, MDBCardImage, MDBBtn, MDBRipple,MDBPopover, MDBPopoverBody, MDBPopoverHeader } from 'mdb-react-ui-kit';
+import {Popover,OverlayTrigger} from "react-bootstrap";
+import { MDBCard, MDBCardBody, MDBCardImage, MDBBtn, MDBRipple } from 'mdb-react-ui-kit';
 import { useSelector,useDispatch } from "react-redux";
 import {getWatchList} from '../actions/user'
 import moment from "moment";

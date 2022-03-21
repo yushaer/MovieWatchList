@@ -1,27 +1,20 @@
 import React, { useEffect,useState} from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import {searchMovies,getRecommendedMovies, getPopularMovies, getFeaturedMovies} from '../actions/movie'
+ 
 
 import { Link,useNavigate,useLocation} from 'react-router-dom';
 import { MDBPagination, MDBPaginationItem, MDBPaginationLink } from 'mdb-react-ui-kit';
 const Pagination =(props)=>{
     const navigate=useNavigate();
-    const[movieData,setMovieData]=useState(0);
+   
 
     const location = useLocation()
-    const dispatch = useDispatch();
-    const data = useSelector((state) => state.movies);
-    console.log(props.page)
-    useEffect(()=>{
-       
- 
-        setMovieData(data);
     
-    },[data]);
-     
+
+    console.log(props.page)
+
 let max_pages=10;
  
-if(!movieData.isLoading){
+
      
          function createPaginationItems(count){
              let elements=[]
@@ -38,10 +31,13 @@ if(!movieData.isLoading){
              return elements
          }
        // console.log(movieData)
-        if(movieData){
-            if(movieData[props.type]&& movieData[props.type].totalPages<max_pages){
-                max_pages=movieData[props.type].totalPages;
+        if( typeof props.movieobj !== 'undefined'  ){
+            
+                if( props.movieobj.totalPages<max_pages){
+                    max_pages=props.movieobj.totalPages;
+               
             }
+            
         }
   return( <nav aria-label='Page navigation example' className='bg-dark text-light movie-pagination'>
   <MDBPagination  circle  center className=''>
@@ -61,7 +57,7 @@ if(!movieData.isLoading){
       
     </MDBPaginationItem>
   </MDBPagination>
-</nav>);}
+</nav>);
     
 }
 export default Pagination;

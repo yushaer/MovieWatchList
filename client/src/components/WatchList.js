@@ -6,7 +6,7 @@ import { MDBContainer, MDBRow, MDBCol,MDBTabs,
     MDBTabsLink,
     MDBTabsContent,
     MDBTabsPane } from 'mdb-react-ui-kit';
-import * as api from '../api/index.js';
+ 
 import {setUser} from '../actions/user'
 import { useNavigate  } from 'react-router-dom';
 import { useSelector,useDispatch  } from "react-redux";
