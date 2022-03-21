@@ -95,7 +95,7 @@ const MovieCard=(props)=>{
  
    
       return(
-        <MDBCard className="bg-light mb-5 " data-aos="fade-right" style={{ maxWidth: '22rem' }}>
+        <MDBCard className="bg-light mb-5 movie" data-aos="fade-right" style={{ maxWidth: '22rem' }}>
               
                 
         <MDBRipple rippleColor='light' rippleTag='div' className="bg-image hover-overlay" onMouseEnter={() => sethover(true)}

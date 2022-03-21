@@ -3,7 +3,8 @@ import Users from '../models/users.js'
 import fetch from 'node-fetch';
 import config from '../movie-config.js'
 import movieConfig from "../movie-config.js";
-
+ 
+import memorycache from 'memory-cache';
 export const getMoviesList=async(req,res)=>{
     try{
         const movies=await moviesList.find({user:req.userId});
@@ -57,8 +58,12 @@ export const getRecommendedMovies=async(req,res)=>{
     try{
         const movies=await moviesList.find({user:req.userId});
         if(movies.length>0){
+            let page =1;
+        if(req.query.page){
+            page=req.query.page;
+        }
             const movie=movies[Math.floor(Math.random()*movies.length)];
-            const movieurl= movieConfig.url.base_url+movie.movie.id+"/recommendations?api_key="+movieConfig.api_key;
+            const movieurl= movieConfig.url.base_url+movie.movie.id+"/recommendations?page="+page+"&api_key="+movieConfig.api_key;
             const recomended = await fetchFromApi(movieurl);
             //console.log(recomended)
             return res.status(200).json(recomended);
@@ -80,10 +85,24 @@ async function fetchMovies(pages) {
          
    }
 export const getFeaturedMovies= async(req,res)=>{
-    
-        const movies= await fetchFromApi(movieConfig.url.featured);
+    try{
+        let page =1;
+        if(req.query.page){
+            page=req.query.page;
+        }
+        const movies= await fetchFromApi(movieConfig.url.featured+"&page="+page);
+        let key='_express_' +req.originalUrl||req.url;
+        memorycache.put(key,JSON.stringify(movies),10000)
+        
         //console.log(movies);
         res.status(200).json(movies);
+    }
+    catch(error){
+
+        res.status(401).json({message: error.message});
+    }
+
+   
     
 }
 export const getMoviesBySearch= async(req,res)=>{
@@ -93,9 +112,9 @@ export const getMoviesBySearch= async(req,res)=>{
             page=req.query.page;
         }
         const movies= await fetchFromApi(movieConfig.url.search+req.query.movieName+"&page="+page)
-        
-        res.status(200).json(movies);
-       // console.log(movies);
+        console.log(movies);
+        return res.status(200).json(movies);
+   
        
     }
     else{
@@ -105,25 +124,29 @@ export const getMoviesBySearch= async(req,res)=>{
 
 }
 
+
 export const getPopularMovies= async(req,res)=>{
-   
-        let page =1;
-        if(req.query.page){
-            page=req.query.page;
-        }
-        let pages=[movieConfig.url.popular+"&page="+1,movieConfig.url.popular+"&page="+2,movieConfig.url.popular+"&page="+3]
-        fetchMovies(pages).then(posts => {
-            let postSet = new Set()
-           // console.log(posts);
-            posts.forEach(page => {
-                page.results.forEach(page => {
-                    postSet.add(page)
-                });
-            });
-            const post_arr=Array.from(postSet);
-           // console.log(post_arr);
-            res.status(200).json({results:post_arr});
-        })
+   try{
+    let page =1;
+    if(req.query.page){
+        page=req.query.page;
+    }
+
+
+        let fetch_url=movieConfig.url.popular+"&page="+page
+        const movies=await fetchFromApi(fetch_url)
+        let key='_express_' +req.originalUrl||req.url;
+         memorycache.put(key,JSON.stringify(movies),10000)
+         //console.log(memorycache.get(key))
+     //  console.log(movies);
+        res.status(200).json(movies);
+   }
+   catch(error){
+       console.log(error.message)
+       res.status(401).json({message: error.message});
+   }
+       
+    
             
    
       

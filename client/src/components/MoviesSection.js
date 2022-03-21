@@ -11,7 +11,7 @@ const moviesSection=(props)=>{
            
             
             
-                typeof props.movieobj !== 'undefined'? props.movieobj.map((movie,idx)=>{
+                typeof props.movieobj !== 'undefined'? props.movieobj.movies.map((movie,idx)=>{
                     return(<div key={idx} className="col-lg-3 ">
                         <MovieCard  {...movie}/>
                         

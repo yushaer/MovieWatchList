@@ -10,9 +10,23 @@ body{
 /* Created with https://www.css-gradient.com */
 
 }
- 
+ .movie-pagination{
+    box-shadow: 0 0.5rem 1rem 5px rgb(20 18 18 / 49%) !important;
+    border-radius: 0.6rem;
+
+ }
+ .movie-pagination .page-item .page-link{
+    color: rgba(var(--mdb-light-rgb), var(--mdb-text-opacity)) ;
+ }
+ .movie-pagination .page-item:hover .page-link{
+    color: black;
+ }
+ .movie-pagination .page-item:hover, .page-link:hover .page-link    {
+    color: black;
+ }
 .movie{
-    box-shadow: 0 0.5rem 1rem 5px rgb(106 106 106 / 49%) !important;
+    box-shadow: 0 0.5rem 1rem 5px rgb(20 18 18 / 49%) !important;
+
     background-color: #f8f8f8;
     border: none;
 }

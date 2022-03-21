@@ -3,33 +3,56 @@ import React,{useEffect,useState} from "react";
 import MoviesSection from "./MoviesSection";
 import { Container,Nav,NavDropdown,Button,Form,Row,Col  } from 'react-bootstrap';
 import Navbar from "./Navbar";
+import  Pagination from "./Pagination";
 import { useSelector,useDispatch  } from "react-redux";
-import { useNavigate  } from 'react-router-dom';
-import {searchMovies,getRecommendedMovies} from '../actions/movie'
+import { useNavigate,useLocation  } from 'react-router-dom';
+import {searchMovies,getRecommendedMovies, getPopularMovies, getFeaturedMovies} from '../actions/movie'
 import {setUser} from '../actions/user'
 
 import { MDBSpinner } from 'mdb-react-ui-kit';
+function useQuery() {
+    return new URLSearchParams(useLocation().search);
+  }
 const MovieList=(props)=>{
+    const query = useQuery();
     const selectorData=useSelector((state)=>state.movies);
-    const[movies,setMovies]=useState([]);
+    const[movies,setMovies]=useState(props.type);
     const[search,setSearch]=useState(false);
     const navigate=useNavigate();
+    const location=useLocation();
     const dispatch=useDispatch();
-    useEffect(()=>{
-        if(props.type==="recomended"){
-            const user = JSON.parse(localStorage.getItem("user"));
+    const page = query.get('page') || 1;
+    
 
-         if(!user){
-            navigate('/login')
-            }   
-            dispatch(getRecommendedMovies());
-          }
-    },[dispatch])
+    useEffect(()=>{
+    
+        switch(props.type){
+            case "recomended":
+                const user = JSON.parse(localStorage.getItem("user"));
+
+                if(!user){
+                   navigate('/login')
+                   }   
+                   dispatch(getRecommendedMovies(page));
+            break;
+           
+            case "popular":
+                dispatch(getPopularMovies(page));
+            break
+            default:
+                dispatch(getFeaturedMovies(page));
+                break;
+
+        }
+        
+    
+    },[dispatch,location,page])
     
     useEffect(()=>{
         dispatch(setUser())
        
-        setMovies(selectorData)
+        setMovies(selectorData);
+        console.log(movies)
     },[selectorData])
     function test(){
        delete movies.search
@@ -67,7 +90,7 @@ const MovieList=(props)=>{
                 <div className="col-md-8">
                 <div className="search"> 
                 <i className="fa fa-search"></i> 
-                <input type="text" className="form-control" onKeyDown={handleSearch} placeholder="Search Movies"/>
+                <input type="text" className="form-control" onChange={handleSearch} placeholder="Search Movies"/>
             </div>
                 </div>
             </div>
@@ -82,6 +105,7 @@ const MovieList=(props)=>{
                 < MoviesSection name={ !search?props.name:"Results"} movieobj={!search?movies[props.type]:movies.search}/>
             {/* < MoviesSection name="Popular" movieobj={movies.popular}/>
             < MoviesSection name="Discover" movieobj={movies.featured}/> */}
+           {!search? (<Pagination type={props.type} page={page}/>):''}
     </React.Fragment>
     )
                 
