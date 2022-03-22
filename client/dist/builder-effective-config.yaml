@@ -1,0 +1,10 @@
+directories:
+  output: dist
+  buildResources: assets
+files:
+  - filter:
+      - build/**/*
+extraMetadata:
+  main: build/start-electron.js
+extends: react-cra
+electronVersion: 17.1.2

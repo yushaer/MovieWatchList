@@ -1,6 +1,6 @@
 import {React,useEffect} from "react";
 import {
-    BrowserRouter,
+  HashRouter,
     Routes,
     Route,
   } from "react-router-dom";
@@ -30,7 +30,7 @@ const App=()=>{
     return(
            
       
-            <BrowserRouter>
+            <HashRouter>
     <Routes>
   
       
@@ -42,7 +42,7 @@ const App=()=>{
       <Route path="/login" element={<AuthForm title="Login" type="login" />} />
       <Route path="/register" element={ <AuthForm title="Register" type="register" />} />
     </Routes>
-  </BrowserRouter>
+  </HashRouter>
       
             
             
