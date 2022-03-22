@@ -23,7 +23,7 @@ let max_pages=1;
         if( typeof props.movieobj !== 'undefined'  ){
             
                 
-                    max_pages=props.movieobj.totalPages;
+                    max_pages=(props.movieobj.totalPages<=500?props.movieobj.totalPages:500);
                
             
             
