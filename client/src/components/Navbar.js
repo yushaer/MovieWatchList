@@ -19,8 +19,9 @@ import { HashLink as Link } from 'react-router-hash-link';
  
  import { useSelector,useDispatch  } from "react-redux";
  import {setUser} from '../actions/user'
- import { useNavigate  } from 'react-router-dom';
+ import { useNavigate,useLocation  } from 'react-router-dom';
 const NavBar= (props)=>{
+  const location=useLocation();
   const navigate= useNavigate();
   const selectorData=useSelector((state)=>state.user);
     const[profile,setProfile]=useState({})
@@ -30,7 +31,7 @@ const NavBar= (props)=>{
   
       //console.log(selectorData) 
      setProfile(selectorData)
-    }, [selectorData]);
+    }, [selectorData,location]);
   const links=[
   {
         url:"/popular",

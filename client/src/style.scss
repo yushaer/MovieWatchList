@@ -10,20 +10,33 @@ body{
 /* Created with https://www.css-gradient.com */
 
 }
- .movie-pagination{
-    box-shadow: 0 0.5rem 1rem 5px rgb(20 18 18 / 49%) !important;
-    border-radius: 0.6rem;
+ .movie-pagination-bar{
+    
+    position: sticky;
+    bottom:0;
+  
+ 
 
  }
- .movie-pagination .page-item .page-link{
+ .movie-pagination {
+    width: fit-content;
+    margin: auto !important;
+ 
+    box-shadow: 0 0.5rem 1rem 5px rgb(20 18 18 / 49%) !important;
+    border-radius: 0.6rem;
+     justify-content: center;
+ }
+ .movie-pagination li{
+    
+ }
+ .movie-pagination .movie-pagination-item:hover {
+     background-color: rgb(155, 155, 155);
+ }
+ .movie-pagination .movie-pagination-item {
     color: rgba(var(--mdb-light-rgb), var(--mdb-text-opacity)) ;
+    // background-color: #afadad;
  }
- .movie-pagination .page-item:hover .page-link{
-    color: black;
- }
- .movie-pagination .page-item:hover, .page-link:hover .page-link    {
-    color: black;
- }
+
 .movie{
     box-shadow: 0 0.5rem 1rem 5px rgb(20 18 18 / 49%) !important;
 

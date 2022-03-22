@@ -33,15 +33,15 @@ useEffect(() => {
    
     setProfile(userData);
 }, [userData]);
-useEffect(() => {
+// useEffect(() => {
  
   
    
-dispatch(setUser())
-//api.getWatchList()
+// dispatch(setUser())
+// //api.getWatchList()
  
   
-}, [dispatch]);
+// }, [dispatch]);
 
 
 

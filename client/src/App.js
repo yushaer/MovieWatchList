@@ -14,10 +14,11 @@ import {setUser,getWatchList} from "./actions/user"
 
 import {getFeaturedMovies,getPopularMovies} from './actions/movie'
 const App=()=>{
+  
   const dispatch=useDispatch();
   
     useEffect(() => {
-      dispatch(setUser());
+    
         AOS.init({
           duration : 2000
         });
