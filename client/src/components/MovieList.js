@@ -26,30 +26,28 @@ const MovieList=(props)=>{
 
     useEffect(()=>{
     
-        switch(props.type){
-            case "recomended":
+       
+            if(props.type=="recomended"){
                 const user = JSON.parse(localStorage.getItem("user"));
 
                 if(!user){
                    navigate('/login')
-                   }   
-                   dispatch(getRecommendedMovies(page));
-            break;
-           
-            case "popular":
+                   }  
+                   
+                
+            }
+            dispatch(getRecommendedMovies(page));
+            
                 dispatch(getPopularMovies(page));
-            break
-            default:
+            
                 dispatch(getFeaturedMovies(page));
-                break;
-
-        }
+       
         
     
-    },[dispatch,location,page])
+    },[dispatch,page])
     
     useEffect(()=>{
-        dispatch(setUser())
+  
        
         setMovies(selectorData);
         console.log(movies)

@@ -15,6 +15,8 @@ console.log(movies.length);
     }
 }
 
+
+
 export const updateMovie =async(req,res)=>{
     try{
         
@@ -30,6 +32,12 @@ export const updateMovie =async(req,res)=>{
         res.status(404).json({message:error.message});
     }
 }
+/**
+ * deletes a movie from User Watch List
+ * @param {*} req- request object
+ * @param {*} res - response object
+ * @returns     
+ */
 export const deleteMovie =async(req,res)=>{
     try{
         if(!req.query.id){
@@ -54,6 +62,14 @@ async function fetchFromApi(url){
         return data;
       
 }
+export const getTopRatedMovies=async(req,res)=>{
+    try{
+
+    }catch(error){
+        res.status(404).json({message:error.message});
+    }
+}
+    
 export const getRecommendedMovies=async(req,res)=>{
     try{
         const movies=await moviesList.find({user:req.userId});
@@ -158,13 +174,33 @@ export const getPopularMovies= async(req,res)=>{
    
 
 }
+function binarysearch(arr,key){
+    let low=0;
+    let high=arr.length-1;
+    while(low<=high){
+        let mid=Math.floor((low+high)/2);
+        if(arr[mid].id===key){
+            return mid;
+        }
+        else if(arr[mid].id<key){
+            low=mid+1;
+        }
+        else{
+            high=mid-1;
+        }
+    }
+    return -1;
+}
+
+    
+
 export const addMovies =async(req,res)=>{
     const movieid=req.query.id;
     const mov=req.body;
    
     try{                                                    
         const movie_Exists = await moviesList.findOne({user:req.userId,"movie.id":mov.id})
-      //  console.log(movie_Exists)
+        //  console.log(movie_Exists)
         if(!movie_Exists){
             const Movie= await new moviesList({movie:mov,user:req.userId});
             await Movie.save();
