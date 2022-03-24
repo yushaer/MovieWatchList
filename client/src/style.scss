@@ -136,7 +136,9 @@ body{
     box-shadow: 0 0.5rem 1rem 5px rgb(106 106 106 / 49%) !important;
  
 }
-
+.genre-badge{
+    background-color: rgb(0 174 255) !important;
+}
 
 $box-shadow:  0 .125rem .25rem rgba($white, .075);
 @media only screen and (max-width: 600px) {

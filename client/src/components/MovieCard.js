@@ -1,12 +1,13 @@
 import React,{useState,useEffect} from "react";
 import * as api from '../api/index.js';
 import {isMobile} from 'react-device-detect';
-
+import { MDBBadge } from 'mdb-react-ui-kit';
 import { useNavigate} from 'react-router-dom';
 import {Popover,OverlayTrigger} from "react-bootstrap";
 import { MDBCard, MDBCardBody, MDBCardImage, MDBBtn, MDBRipple } from 'mdb-react-ui-kit';
 import { useSelector,useDispatch } from "react-redux";
 import {getWatchList} from '../actions/user'
+import GenreBadge from "./GenreBadge";
 import moment from "moment";
 const MovieCard=(props)=>{
     const[hover,sethover]=useState(false);
@@ -46,7 +47,7 @@ const MovieCard=(props)=>{
       else{
         const movieData={
           id:props.id,
-          title:props.original_title,
+          title:props.title,
           release_date:props.release_date,
           imageUrl:"https://image.tmdb.org/t/p/w185/"+props.poster_path
         }
@@ -107,8 +108,13 @@ const MovieCard=(props)=>{
               
         </MDBRipple >
       <MDBCardBody>
-        
+     {props.type!="watchlist"?(<><GenreBadge genres={props.genres} /><br></br></>):""} 
+     
+    
+    
+       
         <h3 className="card-title">{props.title}</h3>
+
         
         <span className="movie_info float-start">{props.type=="watchlist"?new moment(props.release_date).format("YYYY MM DD"):props.release_date}</span>
         <span className="movie_info float-end">{props.type=="watchlist"?(<MDBBtn className='text-light' color='danger' onClick={handleDelete} >delete</MDBBtn>):(<><i className="fas fa-star"></i>{props.vote_average}</>)}</span>

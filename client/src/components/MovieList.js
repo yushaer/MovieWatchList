@@ -33,10 +33,10 @@ const MovieList=(props)=>{
                 if(!user){
                    navigate('/login')
                    }  
-                   
+                   dispatch(getRecommendedMovies(page));
                 
             }
-            dispatch(getRecommendedMovies(page));
+            
             
                 dispatch(getPopularMovies(page));
             
@@ -44,13 +44,13 @@ const MovieList=(props)=>{
        
         
     
-    },[dispatch,page])
+    },[dispatch,page,props.type=="recomended"])
     
     useEffect(()=>{
   
        
         setMovies(selectorData);
-        console.log(movies)
+        //console.log(movies)
     },[selectorData])
     function test(){
        delete movies.search

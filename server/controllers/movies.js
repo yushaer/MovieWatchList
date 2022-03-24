@@ -62,6 +62,32 @@ async function fetchFromApi(url){
         return data;
       
 }
+const movieGenres=[{"id":12,"name":"Adventure"},{"id":14,"name":"Fantasy"},{"id":16,"name":"Animation"},{"id":18,"name":"Drama"},{"id":27,"name":"Horror"},{"id":28,"name":"Action"},{"id":35,"name":"Comedy"},{"id":36,"name":"History"},{"id":37,"name":"Western"},{"id":53,"name":"Thriller"},{"id":80,"name":"Crime"},{"id":99,"name":"Documentary"},{"id":878,"name":"Science Fiction"},{"id":9648,"name":"Mystery"},{"id":10402,"name":"Music"},{"id":10749,"name":"Romance"},{"id":10751,"name":"Family"},{"id":10752,"name":"War"},{"id":10770,"name":"TV Movie"}];
+function findGenre(id){
+    let genre=movieGenres.find(genre=>genre.id===id);
+    return genre.name;
+}
+function generateCleanedMovieList(movies){
+    let cleanedList=[];
+    
+   
+
+    movies.forEach(movie=>{
+      
+        cleanedList.push({
+            id:movie.id,
+            title:movie.title,
+            release_date:movie.release_date,
+            vote_average:movie.vote_average,
+            overview:movie.overview,
+            poster_path:movie.poster_path,
+            genres:movie.genre_ids.map(genre=>findGenre(genre))
+          
+
+        })
+    })
+    return cleanedList;
+}
 export const getTopRatedMovies=async(req,res)=>{
     try{
 
@@ -81,8 +107,10 @@ export const getRecommendedMovies=async(req,res)=>{
             const movie=movies[Math.floor(Math.random()*movies.length)];
             const movieurl= movieConfig.url.base_url+movie.movie.id+"/recommendations?page="+page+"&api_key="+movieConfig.api_key;
             const recomended = await fetchFromApi(movieurl);
+            let results = generateCleanedMovieList(recomended.results);
+        const moviesArray={page:recomended.page,total_pages:recomended.total_pages,results:results}
             //console.log(recomended)
-            return res.status(200).json(recomended);
+            return res.status(200).json(moviesArray);
         }
         else {
             return res.status(404).json({message:"No movie present in the watchlist to reccomend from"})
@@ -107,11 +135,14 @@ export const getFeaturedMovies= async(req,res)=>{
             page=req.query.page;
         }
         const movies= await fetchFromApi(movieConfig.url.featured+"&page="+page);
+        let results = generateCleanedMovieList(movies.results);
+        const moviesArray={page:movies.page,total_pages:movies.total_pages,results:results}
+        //console.log(moviesArray);
         let key='_express_' +req.originalUrl||req.url;
-        memorycache.put(key,JSON.stringify(movies),10000)
-        
-        //console.log(movies);
-        res.status(200).json(movies);
+         memorycache.put(key,JSON.stringify(moviesArray),10000)
+         //console.log(memorycache.get(key))
+     //  console.log(movies);
+        res.status(200).json(moviesArray);
     }
     catch(error){
 
@@ -128,8 +159,13 @@ export const getMoviesBySearch= async(req,res)=>{
             page=req.query.page;
         }
         const movies= await fetchFromApi(movieConfig.url.search+req.query.movieName+"&page="+page)
-        console.log(movies);
-        return res.status(200).json(movies);
+        let results = generateCleanedMovieList(movies.results);
+        const moviesArray={page:movies.page,total_pages:movies.total_pages,results:results}
+        //console.log(moviesArray);
+        // let key='_express_' +req.originalUrl||req.url;
+        //  memorycache.put(key,JSON.stringify(moviesArray),10000)
+     
+        res.status(200).json(moviesArray);
    
        
     }
@@ -150,12 +186,16 @@ export const getPopularMovies= async(req,res)=>{
 
 
         let fetch_url=movieConfig.url.popular+"&page="+page
+        
         const movies=await fetchFromApi(fetch_url)
+        let results = generateCleanedMovieList(movies.results);
+        const moviesArray={page:movies.page,total_pages:movies.total_pages,results:results}
+       // console.log(moviesArray);
         let key='_express_' +req.originalUrl||req.url;
-         memorycache.put(key,JSON.stringify(movies),10000)
+         memorycache.put(key,JSON.stringify(moviesArray),10000)
          //console.log(memorycache.get(key))
      //  console.log(movies);
-        res.status(200).json(movies);
+        res.status(200).json(moviesArray);
    }
    catch(error){
        console.log(error.message)

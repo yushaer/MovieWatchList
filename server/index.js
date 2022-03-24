@@ -4,7 +4,7 @@ import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import cors from 'cors';
 import rootRouter from './routes/index.js';
-
+import compression from "compression";
   
 if(!process.env.PRODUCTION){
    
@@ -12,7 +12,7 @@ if(!process.env.PRODUCTION){
 }
 
 const app = express();
-
+app.use(compression());
 app.use(bodyParser.json({limit:"30mb",extended:true}));
 app.use(bodyParser.urlencoded({limit:"30mb",extended:true}));
 app.use(cors());

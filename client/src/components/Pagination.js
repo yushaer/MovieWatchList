@@ -12,7 +12,7 @@ const MoviePagination =(props)=>{
     const location = useLocation()
     
 
-    console.log(props.page)
+    //console.log(props.page)
 
 let max_pages=1;
  
