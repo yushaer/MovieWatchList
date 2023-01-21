@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const base_url='http://localhost:5000/'
-const produc_server_url='https://moviewatchlistapi.herokuapp.com/'
+const produc_server_url='https://plum-tasty-cod.cyclic.app'
 const API = axios.create({ baseURL: produc_server_url });
 
 API.interceptors.request.use((req) => {
