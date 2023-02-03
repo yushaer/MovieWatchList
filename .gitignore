@@ -126,3 +126,4 @@ dist
 .yarn/install-state.gz
 .pnp.*
 client/build/_redirects
+MovieWatchList.code-workspace
